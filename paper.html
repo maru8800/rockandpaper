@@ -46,32 +46,49 @@
         event.preventDefault();
         }, false);
 
+        var form = document.getElementById("mychoice");
         
+        let valor=form.elements["mychoice"].value;
         </script>
         <script>
         function computerchoice(str) {
             
         var form = document.getElementById("mychoice");
-        alert(form.elements["mychoice"].value)
+        
         var valor= form.elements["mychoice"].value;
-        console.log(valor);
+       
             
            
             let pick = Math.floor(Math.random() * 10);
             if (pick <= 3) {
                 str= "rock";
-                console.log(str);
             }
-            if (pick > 3 && pick <= 6){
+               
+                if (pick > 3 && pick <= 6){
                  str = "paper";
-                 console.log(str);
+               
             }
             if (pick > 6 && pick <= 9) {
              str = "cissors";
-             console.log(str);
              
-             }               
-           
+            } 
+             alert(str);
+             if (valor==str){
+                  alert("empate");}              
+              else {
+                  if (valor=="paper" && str=="rock") {
+                  alert("gana papel,ganaste tu");}
+                  if (valor="cissors" && str=="rock"){
+                      alert("gana rock, la compu gana");}
+                      if (valor== "rock" && str== "paper"){ 
+                          alert("gana papel, la compu gana")}
+                      if (valor=="cissors" && str=="paper"){
+                          alert("gana cissors, tu ganas")}
+                      if (valor=="rock" && str=="cissors"){
+                          alert("gana piedra, tu ganas")}
+                      if (valor=="paper" && str=="cissors"){
+                          alert("gana cissors, la compu gana")}
+              }
             return str;
         } 
     </script>
