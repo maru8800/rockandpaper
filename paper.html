@@ -1,6 +1,91 @@
 <!DOCTYPE html>
 <html5>
 
+
+
+    <script type="text/javascript">
+  var  valor="algo";
+   var computerselection="algomas";
+  var  msg="el mensaje";
+  
+ 
+  
+
+  function start(){
+       
+   
+                    i=i+1;
+                    main();   
+                   
+                }
+                    
+        function getvalor() {         
+            var ele = document.getElementsByName('mych');
+            var val;  
+            for(j = 0; j < ele.length; j++) {
+                if(ele[j].checked)
+                val = ele[j].value;
+            }
+           valor= val;
+            return valor;
+        }   
+           
+        function computerplay() {
+            let pick = Math.floor(Math.random() * 10);
+            if (pick <= 3) {
+                computerselection = "rock";
+            }
+            if (pick > 3 && pick <= 6) {
+                computerselection = "paper";
+            }
+            if (pick > 6 && pick <= 9) {
+                computerselection = "cissors";
+            }
+           
+            return computerselection;
+        }
+
+        
+        function game(valor,computerselection) {
+            alert(valor);
+            alert(computerselection);
+            if (valor == "paper" && computerselection == "paper") {
+              msg="empate";  } 
+              if (valor == "rock" && computerselection == "rock") {
+              msg="empate";  }
+              if (valor == "cissors" && computerselection == "cissors") {
+              msg="empate";  } 
+                if(valor == "paper" && computerselection == "rock") {
+            
+                   msg="gana papel,ganaste tu";
+                   mywins= mywins+1;
+                }
+                 if (valor == "paper" && computerselection == "cissors") {
+                   msg="gana cissors, la compu gana";
+                   pcwins=pcwins+1;
+                }
+            
+                if (valor == "cissors" && computerselection == "rock") {
+                    mag="gana rock, la compu gana";
+                    pcwins=pcwins+1;
+                }
+               if (valor == "cissors" && computerselection == "paper") {
+                    msg="gana cissors, ganaste tu";
+                    mywins= mywins+1;                   
+                }
+                if (valor == "rock" && computerselection == "cissors") {
+                    msg="gana piedra, ganaste tu";
+                    mywins= mywins+1;
+                }
+                if (valor == "rock" && computerselection == "paper") {
+                    msg ="gana papel, la compu gana";
+                    pcwins=pcwins+1;
+                }
+            
+            return msg;
+        }
+    </script>
+
     <head>
         <meta charset="UTF-8">
 
@@ -8,89 +93,59 @@
 
     </head>
 
-
-
-    
-<body>
-    <h1>enter your choice:</h1>
-    <form id="mychoice" >
-        <input type="radio" id="mychoice1" name="mychoice" value="rock">
-        <label for="mychoice1"> I shose rock</label ><br>
-        <input type="radio" id="mychoice2" name="mychoice" value="paper">
-        <label for="mychoice2"> I shose paper</label><br>
-        <input type="radio" id="mychoice3" name="mychoice" value="cissors">
-        <label for="mychoice3"> I shose cissors</label><br>
-        <br><button type="submit"value="submit">Submit</button></br>
-       
+    <body > 
+        <h1>enter your choice:</h1>
+        <form id="mych">
+            <input type="radio" id="mychoice1" name="mych" value="rock">
+            <label for="mychoice1"> I shose rock</label><br>
+            <input type="radio" id="mychoice2" name="mych" value="paper">
+            <label for="mychoice2"> I shose paper</label><br>
+            <input type="radio" id="mychoice3" name="mych" value="cissors">      
+            <label for="mychoice3"> I shose Scissors</label><br>
+           
         </form>
-       
+
         <pre id="log">
         </pre>
 
-     
-         
-    <button onclick="computerchoice()">jugar</button> 
-    
-    <script>
-        var form = document.querySelector("form");
-        var log = document.querySelector("#log");
-    
-        form.addEventListener("submit", function(event) {
-          
-        var data = new FormData(form);
-        var output = "";
-        for (const entry of data) {
-        output = output + entry[0] + "=" + entry[1] + "\r";
-        };
-        log.innerText = output;
-        event.preventDefault();
-        }, false);
 
-        var form = document.getElementById("mychoice");
-        
-        let valor=form.elements["mychoice"].value;
-        </script>
-        <script>
-        function computerchoice(str) {
-            
-        var form = document.getElementById("mychoice");
-        
-        var valor= form.elements["mychoice"].value;
+
        
+        <button type="button" id="mybtn" onclick="start()">jugar</button>
+
+        <script>
+         let pcwins = 0;
+         var  mywins = 0;
+         var i=0;
+        
+
+
+        
+                 function main(){
+                     alert(i);
+                if(i<6){ 
+                 
+                getvalor();
+                computerplay();
+                game(valor,computerselection);
+                alert(msg);
+               
             
+                
+            }
+            if(i==5) {
+            alert("la computadora gano "+pcwins +" veces");
+        alert("tu ganaste "+mywins +" veces");
+        pcwins=0;
+        mywins=0;
+        i=0;
+        
+            }
            
-            let pick = Math.floor(Math.random() * 10);
-            if (pick <= 3) {
-                str= "rock";
-            }
-               
-                if (pick > 3 && pick <= 6){
-                 str = "paper";
-               
-            }
-            if (pick > 6 && pick <= 9) {
-             str = "cissors";
-             
-            } 
-             alert(str);
-             if (valor==str){
-                  alert("empate");}              
-              else {
-                  if (valor=="paper" && str=="rock") {
-                  alert("gana papel,ganaste tu");}
-                  if (valor="cissors" && str=="rock"){
-                      alert("gana rock, la compu gana");}
-                      if (valor== "rock" && str== "paper"){ 
-                          alert("gana papel, la compu gana")}
-                      if (valor=="cissors" && str=="paper"){
-                          alert("gana cissors, tu ganas")}
-                      if (valor=="rock" && str=="cissors"){
-                          alert("gana piedra, tu ganas")}
-                      if (valor=="paper" && str=="cissors"){
-                          alert("gana cissors, la compu gana")}
-              }
-            return str;
-        } 
-    </script>
-</p>;
-</body>
+            return; 
+        }  
+
+       
+        </script>
+
+    </body>
